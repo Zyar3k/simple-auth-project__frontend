@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import AuthConsumer from "../hooks/auth";
 
 const Dashboard = () => {
-  const [authed, dispatch] = AuthConsumer();
+  const [, dispatch] = AuthConsumer();
+  const navigate = useNavigate();
   return (
     <div>
       <h1>Dashboard</h1>
@@ -9,6 +11,7 @@ const Dashboard = () => {
         className="border px-5 bg-indigo-500 text-gray-50 rounded"
         onClick={() => {
           dispatch({ type: "logout" });
+          navigate("/login", { replace: true });
         }}
       >
         Logout
