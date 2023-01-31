@@ -1,16 +1,37 @@
-import { Route, Routes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 
 import "./App.css";
+import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Settings from "./components/Settings";
 
 const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<h2>Home</h2>}></Route>
-      <Route path="/login" element={<h2>Login</h2>}></Route>
-      <Route path="/dashboard" element={<h2>Dashboard</h2>}></Route>
-      <Route path="/setting" element={<h2>Settings</h2>}></Route>
-    </Routes>
-  );
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: <Home />,
+      children: [
+        {
+          index: true,
+          element: <div>Home Content</div>,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/settings",
+          element: <Settings />,
+        },
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+      ],
+    },
+  ]);
+  return routes;
 };
 
 export default App;
