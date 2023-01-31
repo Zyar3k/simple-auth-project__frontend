@@ -1,11 +1,13 @@
 import { useRoutes } from "react-router-dom";
+import { RequireAuth } from "./hooks/auth";
 
-import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import HomeContent from "./components/HomeContent";
 import Login from "./components/Login";
 import Settings from "./components/Settings";
+
+import "./App.css";
 
 const App = () => {
   const routes = useRoutes([
@@ -23,11 +25,19 @@ const App = () => {
         },
         {
           path: "/settings",
-          element: <Settings />,
+          element: (
+            <RequireAuth>
+              <Settings />
+            </RequireAuth>
+          ),
         },
         {
           path: "/dashboard",
-          element: <Dashboard />,
+          element: (
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          ),
         },
       ],
     },

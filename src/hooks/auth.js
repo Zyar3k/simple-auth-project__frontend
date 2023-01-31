@@ -1,4 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
+import { Navigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const initialState = { auth: false };
 
@@ -27,4 +29,18 @@ export function AuthProvider({ children }) {
 
 export default function AuthConsumer() {
   return useContext(authContext);
+}
+
+export function RequireAuth({ children }) {
+  const [authed] = AuthConsumer();
+  const location = useLocation();
+  return authed.auth === true ? (
+    children
+  ) : (
+    <Navigate
+      to={"/login"}
+      replace
+      state={{ path: location.pathname }}
+    ></Navigate>
+  );
 }
