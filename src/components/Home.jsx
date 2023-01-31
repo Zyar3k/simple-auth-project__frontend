@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import AuthConsumer from "../hooks/auth";
 
 const Home = () => {
-  const [authed, dispatch] = AuthConsumer();
+  const [authed] = AuthConsumer();
   console.log(authed);
   return (
     <main>

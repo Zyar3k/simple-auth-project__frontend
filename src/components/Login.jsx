@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthConsumer from "../hooks/auth";
 
 const Login = () => {
-  const [authed, dispatch] = AuthConsumer();
+  const [, dispatch] = AuthConsumer();
   const navigate = useNavigate();
   return (
     <div>
